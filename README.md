@@ -25,3 +25,4 @@ npm run typecheck  # tsc --noEmit
 - `src/components/ui/` — primitivos animados (side-accent com parallax de scroll, text-generate, marquee infinito, reveal on-scroll)
 - `src/lib/site.ts` — dados centrais (nome, domínio, WhatsApp)
 # Leonardo-Boaventura
+# Leonardo-Boaventura
