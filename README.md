@@ -23,7 +23,7 @@ npm run typecheck  # tsc --noEmit
 
 - `src/app/` — layout (fontes + SEO/OG), página, rota `/api/contact`
 - `src/components/sections/` — uma seção por arquivo (hero, sobre, serviços, nichos, processo, depoimentos, contato, footer)
-- `src/components/ui/` — primitivos animados (side-accent com parallax de scroll, dither-shader WebGL, text-generate, marquee infinito, reveal on-scroll, scroll-progress)
+- `src/components/ui/` — primitivos animados (side-accent com parallax de scroll, dither-shader e rainbow-beams WebGL, text-generate, marquee infinito, reveal on-scroll, scroll-progress)
 - `src/lib/site.ts` — dados centrais (nome, domínio, WhatsApp)
 # Leonardo-Boaventura
 # Leonardo-Boaventura

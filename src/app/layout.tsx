@@ -1,18 +1,22 @@
 import type { Metadata } from "next";
 import {
-  Bricolage_Grotesque,
   Instrument_Sans,
+  Instrument_Serif,
   JetBrains_Mono,
 } from "next/font/google";
 import { SITE } from "@/lib/site";
 import "./globals.css";
 
-const bricolage = Bricolage_Grotesque({
+// Serifada contrastante (com itálico) para destaques editoriais.
+const instrumentSerif = Instrument_Serif({
   subsets: ["latin"],
-  variable: "--font-bricolage",
+  weight: "400",
+  style: ["normal", "italic"],
+  variable: "--font-instrument-serif",
   display: "swap",
 });
 
+// Complementar: corpo dos parágrafos.
 const instrument = Instrument_Sans({
   subsets: ["latin"],
   variable: "--font-instrument",
@@ -67,7 +71,7 @@ export default function RootLayout({
   return (
     <html
       lang="pt-BR"
-      className={`${bricolage.variable} ${instrument.variable} ${jetbrains.variable}`}
+      className={`${instrumentSerif.variable} ${instrument.variable} ${jetbrains.variable}`}
     >
       <body className="grain">
         {children}

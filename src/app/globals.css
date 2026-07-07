@@ -67,7 +67,11 @@
  * uso (dentro do html), e não no :root, onde a variável não existiria.
  */
 @theme inline {
-  --font-display: var(--font-bricolage), ui-sans-serif, sans-serif;
+  /* Principal: Helvetica (títulos, nav, botões) — fonte de sistema, sem download. */
+  --font-display: "Helvetica Neue", Helvetica, Arial, sans-serif;
+  /* Serifada contrastante (itálico) p/ destaques. */
+  --font-serif: var(--font-instrument-serif), ui-serif, Georgia, serif;
+  /* Complementar: corpo dos parágrafos. */
   --font-sans: var(--font-instrument), ui-sans-serif, sans-serif;
   --font-mono: var(--font-jetbrains), ui-monospace, monospace;
 }

@@ -1,7 +1,7 @@
 "use client";
 
 import { motion } from "framer-motion";
-import { SideAccent } from "@/components/ui/side-accent";
+import { RainbowBeams } from "@/components/ui/rainbow-beams";
 import { TextGenerate } from "@/components/ui/text-generate";
 import { whatsappHref } from "@/lib/site";
 
@@ -11,19 +11,14 @@ const HIGHLIGHT = ["sob", "medida"] as const;
 export function Hero() {
   return (
     <header className="relative isolate flex min-h-svh flex-col overflow-hidden bg-noir">
-      {/* Acento: círculo cyan sólido entrando pela direita */}
-      <SideAccent side="right" distance={180} className="top-24 -right-28 sm:top-20 sm:-right-20 lg:top-24 lg:-right-24">
-        <div
-          className="accent-grain animate-float h-40 w-40 rounded-full sm:h-64 sm:w-64 lg:h-[22rem] lg:w-[22rem]"
-          style={{
-            background:
-              "radial-gradient(circle at 32% 28%, #86f3ff 0%, #00e0ff 42%, #006e80 100%)",
-          }}
-        />
-      </SideAccent>
-      <SideAccent side="right" distance={90} className="top-[26rem] right-0 hidden lg:block">
-        <div className="h-px w-64 bg-electric" />
-      </SideAccent>
+      {/* Fundo: faixa diagonal de cores cobrindo o hero inteiro, atrás do conteúdo.
+          Borda em corte seco na diagonal da própria fita; o texto fica na área preta. */}
+      <div
+        aria-hidden
+        className="absolute inset-0 z-0 opacity-60 sm:opacity-100"
+      >
+        <RainbowBeams className="h-full w-full" />
+      </div>
 
       {/* Nav */}
       <nav className="relative z-10 mx-auto flex w-full max-w-6xl items-center justify-between px-6 py-6">
