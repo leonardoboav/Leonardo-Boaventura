@@ -1,5 +1,6 @@
+import { DitherShader } from "@/components/ui/dither-shader";
 import { Reveal } from "@/components/ui/reveal";
-import { SideAccent } from "@/components/ui/side-accent";
+import { IMG_SOBRE } from "@/lib/site";
 
 const STATS = [
   { index: "01", value: "Sob medida", label: "nada de template pronto" },
@@ -13,40 +14,52 @@ export function About() {
       id="sobre"
       className="relative overflow-hidden bg-paper pt-24 pb-20 text-noir sm:pt-32 sm:pb-24"
     >
-      {/* Acento: lâmina magenta em gradiente entrando pela esquerda */}
-      <SideAccent side="left" distance={160} className="top-20 -left-4 sm:top-28">
-        <div
-          className="accent-grain h-48 w-10 sm:h-72 sm:w-16 lg:h-[24rem] lg:w-24"
-          style={{
-            background:
-              "linear-gradient(180deg, #ff74ac 0%, #ff3d8a 45%, #8f0a49 100%)",
-          }}
-        />
-      </SideAccent>
-
       <div className="relative z-10 mx-auto max-w-6xl px-6">
-        {/* Alinhado à direita — contraponto ao hero */}
-        <div className="flex flex-col items-end text-right">
-          <Reveal>
-            <p className="mb-6 font-mono text-xs uppercase text-punch-deep">
-              (01) — sobre
+        <div className="grid gap-12 lg:grid-cols-[0.8fr_1.2fr] lg:gap-20">
+          {/* Retrato em dithering — o elemento humano e o acento da seção */}
+          <Reveal className="max-w-60 sm:max-w-xs lg:max-w-none">
+            <DitherShader
+              src={IMG_SOBRE}
+              alt="Retrato de Leonardo Boaventura"
+              colorMode="grayscale"
+              ditherMode="bayer"
+              gridSize={2}
+              threshold={0.5}
+              primaryColor="#0a0a0a"
+              secondaryColor="#f5f5f0"
+              animated
+              animationSpeed={0.02}
+              className="aspect-[3/4] w-full border border-line-l"
+            />
+            <p className="mt-4 flex items-center gap-2.5 font-mono text-xs uppercase text-stone">
+              <span aria-hidden className="h-2 w-2 bg-punch" />
+              leonardo boaventura — desenvolvedor
             </p>
-            <h2 className="max-w-3xl font-display text-4xl leading-[1.02] font-bold tracking-tight sm:text-6xl">
-              Tecnologia é meio.
-              <br />
-              <span className="text-stone">O fim é o seu resultado.</span>
-            </h2>
           </Reveal>
 
-          <Reveal delay={0.15} className="mt-10 max-w-xl">
-            <p className="text-lg leading-relaxed text-stone">
-              Sou desenvolvedor focado em criar soluções que resolvem problemas reais
-              de negócio. Antes de escrever qualquer linha de código, entendo o que
-              precisa acontecer no seu faturamento, na sua operação ou na sua rotina —
-              e então construo o software certo para isso, com qualidade de produto e
-              sem complexidade desnecessária.
-            </p>
-          </Reveal>
+          {/* Texto alinhado à direita — contraponto ao hero */}
+          <div className="flex flex-col items-end text-right">
+            <Reveal>
+              <p className="mb-6 font-mono text-xs uppercase text-punch-deep">
+                (01) — sobre
+              </p>
+              <h2 className="max-w-3xl font-display text-4xl leading-[1.02] font-bold tracking-tight sm:text-6xl">
+                Tecnologia é meio.
+                <br />
+                <span className="text-stone">O fim é o seu resultado.</span>
+              </h2>
+            </Reveal>
+
+            <Reveal delay={0.15} className="mt-10 max-w-xl">
+              <p className="text-lg leading-relaxed text-stone">
+                Sou desenvolvedor focado em criar soluções que resolvem problemas
+                reais de negócio. Antes de escrever qualquer linha de código, entendo
+                o que precisa acontecer no seu faturamento, na sua operação ou na sua
+                rotina — e então construo o software certo para isso, com qualidade de
+                produto e sem complexidade desnecessária.
+              </p>
+            </Reveal>
+          </div>
         </div>
 
         <Reveal delay={0.25}>

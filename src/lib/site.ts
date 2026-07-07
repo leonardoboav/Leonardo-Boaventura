@@ -15,3 +15,10 @@ export const SITE = {
 export function whatsappHref(message: string = SITE.whatsappMessage): string {
   return `${SITE.whatsapp}?text=${encodeURIComponent(message)}`;
 }
+
+/**
+ * Foto da seção Sobre (renderizada com o DitherShader).
+ * Coloque sua foto em /public (ex.: /public/leonardo.jpg) e troque abaixo:
+ */
+export const IMG_SOBRE = "/sobre-placeholder.svg";
+// export const IMG_SOBRE = "/leonardo.jpg";
