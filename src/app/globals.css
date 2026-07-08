@@ -12,11 +12,14 @@
   --color-line-d: rgba(245, 245, 240, 0.16);
   --color-line-l: rgba(10, 10, 10, 0.16);
 
-  /* Acentos vivos — um por seção, em rotação */
-  --color-electric: #00e0ff;
-  --color-punch: #ff3d8a;
-  --color-punch-deep: #d0146a; /* variante AA para texto sobre paper */
-  --color-acid: #d9ff3f;
+  /* Paleta SÓ quente — um acento por seção, do vermelho ao amarelo.
+     Variantes -deep = AA para texto sobre fundo claro (paper). */
+  --color-ember: #ff5233; /* vermelho / laranja */
+  --color-ember-deep: #c0360f;
+  --color-tangerine: #ff8a3d; /* laranja */
+  --color-amber: #f59e0b; /* âmbar */
+  --color-amber-deep: #9a5a00;
+  --color-gold: #ffce4d; /* amarelo */
 
   --animate-pulse-ring: pulse-ring 2.4s cubic-bezier(0.4, 0, 0.2, 1) infinite;
   --animate-line-drop: line-drop 2.2s ease-in-out infinite;
@@ -69,8 +72,6 @@
 @theme inline {
   /* Principal: Helvetica (títulos, nav, botões) — fonte de sistema, sem download. */
   --font-display: "Helvetica Neue", Helvetica, Arial, sans-serif;
-  /* Serifada contrastante (itálico) p/ destaques. */
-  --font-serif: var(--font-instrument-serif), ui-serif, Georgia, serif;
   /* Complementar: corpo dos parágrafos. */
   --font-sans: var(--font-instrument), ui-sans-serif, sans-serif;
   --font-mono: var(--font-jetbrains), ui-monospace, monospace;
@@ -90,6 +91,24 @@
   animation: marquee var(--marquee-duration, 40s) linear infinite;
 }
 
+/* Split-flap: cada troca de glifo remonta o span e toca este flip curto. */
+@keyframes flap-in {
+  from {
+    transform: rotateX(-85deg);
+    opacity: 0.25;
+  }
+  to {
+    transform: rotateX(0);
+    opacity: 1;
+  }
+}
+
+.flap-glyph {
+  display: inline-block;
+  backface-visibility: hidden;
+  animation: flap-in 0.13s ease-out;
+}
+
 html {
   scroll-behavior: smooth;
 }
@@ -103,7 +122,7 @@ body {
 }
 
 ::selection {
-  background: var(--color-electric);
+  background: var(--color-ember);
   color: var(--color-noir);
 }
 
@@ -129,9 +148,9 @@ body {
 }
 
 /* Índice display gigante vazado — acento da seção Serviços */
-.text-outline-acid {
+.text-outline-ember {
   color: transparent;
-  -webkit-text-stroke: 2.5px var(--color-acid);
+  -webkit-text-stroke: 2.5px var(--color-ember);
 }
 
 /* Grão fino sobre as formas de acento — herda o border-radius da forma */
@@ -155,7 +174,8 @@ body {
   .animate-marquee,
   .animate-pulse-ring,
   .animate-line-drop,
-  .animate-float {
+  .animate-float,
+  .flap-glyph {
     animation: none !important;
   }
 }

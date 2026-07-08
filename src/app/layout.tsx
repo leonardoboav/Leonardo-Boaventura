@@ -1,20 +1,7 @@
 import type { Metadata } from "next";
-import {
-  Instrument_Sans,
-  Instrument_Serif,
-  JetBrains_Mono,
-} from "next/font/google";
+import { Instrument_Sans, JetBrains_Mono } from "next/font/google";
 import { SITE } from "@/lib/site";
 import "./globals.css";
-
-// Serifada contrastante (com itálico) para destaques editoriais.
-const instrumentSerif = Instrument_Serif({
-  subsets: ["latin"],
-  weight: "400",
-  style: ["normal", "italic"],
-  variable: "--font-instrument-serif",
-  display: "swap",
-});
 
 // Complementar: corpo dos parágrafos.
 const instrument = Instrument_Sans({
@@ -71,7 +58,7 @@ export default function RootLayout({
   return (
     <html
       lang="pt-BR"
-      className={`${instrumentSerif.variable} ${instrument.variable} ${jetbrains.variable}`}
+      className={`${instrument.variable} ${jetbrains.variable}`}
     >
       <body className="grain">
         {children}

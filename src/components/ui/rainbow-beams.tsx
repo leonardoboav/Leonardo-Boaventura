@@ -14,24 +14,28 @@ void main() {
   gl_Position = vec4(aPos, 0.0, 1.0);
 }`;
 
-// Faixa reta de estrias diagonais paralelas formando um espectro quente
-// (violeta -> amarelo), estilo Aceternity "Shaders": a cor varia perpendicular
-// à diagonal (violeta encostando no texto preto ... amarelo no canto oposto),
-// com estrias finas de separação e leve textura "escovada" ao longo do comprimento.
+// Cone de estrias diagonais paralelas formando um espectro SÓ quente
+// (vermelho -> amarelo), estilo Aceternity "Shaders": a cor varia perpendicular
+// à diagonal (vermelho encostando no texto preto ... amarelo no canto oposto),
+// com faixas chapadas e distintas ondulando como uma bandeira.
 const FRAG = `
 precision highp float;
 varying vec2 vUv;
 uniform float uTime;
 uniform vec2 uRes;
 
-// 6 cores CHAPADAS da fita (violeta -> amarelo), como estrias distintas.
-vec3 palette6(float i) {
-  if (i < 0.5) return vec3(0.45, 0.30, 0.98); // violeta
-  if (i < 1.5) return vec3(0.68, 0.28, 0.98); // roxo
-  if (i < 2.5) return vec3(0.96, 0.28, 0.82); // magenta
-  if (i < 3.5) return vec3(1.00, 0.30, 0.42); // vermelho / rosa
-  if (i < 4.5) return vec3(1.00, 0.52, 0.20); // laranja
-  return vec3(1.00, 0.86, 0.36);              // amarelo
+// 9 cores CHAPADAS da fita, SÓ tons quentes (vermelho -> amarelo claro), como
+// estrias distintas. Sem ciano, violeta, roxo, magenta ou rosa.
+vec3 palette(float i) {
+  if (i < 0.5)  return vec3(0.90, 0.16, 0.12); // vermelho profundo
+  if (i < 1.5)  return vec3(1.00, 0.24, 0.14); // vermelho
+  if (i < 2.5)  return vec3(1.00, 0.34, 0.14); // vermelho / laranja
+  if (i < 3.5)  return vec3(1.00, 0.46, 0.15); // laranja
+  if (i < 4.5)  return vec3(1.00, 0.57, 0.18); // laranja
+  if (i < 5.5)  return vec3(1.00, 0.69, 0.22); // âmbar
+  if (i < 6.5)  return vec3(1.00, 0.80, 0.30); // amarelo
+  if (i < 7.5)  return vec3(1.00, 0.88, 0.42); // amarelo
+  return vec3(1.00, 0.94, 0.66);               // amarelo claro
 }
 
 void main() {
@@ -47,24 +51,37 @@ void main() {
 
   float aCenter = 0.568; // direção central do cone (rad) — sai pela lateral, sem tocar o topo
   float aHalf = 0.120;   // meia-abertura angular do cone
-  float t = ((aCenter + aHalf) - ang) / (2.0 * aHalf); // 0 = violeta (topo) ... 1 = amarelo (base)
+  float t = ((aCenter + aHalf) - ang) / (2.0 * aHalf); // 0 = vermelho (topo) ... 1 = amarelo (base)
 
   // MOVIMENTO DE BANDEIRA + POR COR: a onda viaja ao longo do comprimento das
   // faixas (presa no apex/"mastro", mais ampla nas pontas). A FASE varia pela
   // largura (t), então CADA faixa de cor balança no seu próprio tempo — como
   // fitas independentes esvoaçando. Contínuo em t: sem costura entre as cores.
   float dist = length(d);
-  float phase = t * 7.0;
-  float flag = sin(dist * 7.0 - uTime * 1.3 + phase) * 0.5
-             + sin(dist * 11.0 - uTime * 2.0 + phase * 1.6) * 0.28;
-  t += flag * 0.022 * smoothstep(0.1, 0.95, dist);
+  float env = smoothstep(0.15, 1.1, dist);    // calmo perto do mastro, amplo nas pontas
+
+  // BANDEIRA + ONDA PRETA (bem devagar): uma onda viaja pelo comprimento do feixe.
+  // A faixa de cor ondula p/ CIMA e p/ BAIXO (assimétrico, como bandeira) e é
+  // ESPREMIDA nos extremos do balanço — o preto avança por UM lado de cada vez.
+  float travel = dist * 0.9 - uTime * 0.11;   // devagar; viaja ao longo do feixe
+  float w = sin(travel * 6.2831);             // -1..1, onda viajante
+  float pivot = 0.5 + 0.32 * w * env;         // centro da faixa sobe/desce (bandeira)
+  float squeeze = 1.0 - 0.315 * w * w * env;  // aperto reduzido 30% (0.45 -> 0.315)
+  float tC = (t - pivot) / squeeze + pivot;   // desloca/comprime de forma ASSIMÉTRICA
+
+  // MOVIMENTO ISOLADO POR COR: fase proporcional a 't' faz CADA faixa de cor
+  // ondular no seu próprio tempo, como fitas independentes esvoaçando.
+  float phase = t * 9.0;
+  float flutter = sin(dist * 5.0 - uTime * 0.45 + phase) * 0.6
+                + sin(dist * 8.0 - uTime * 0.28 + phase * 1.5) * 0.4;
+  tC += flutter * 0.028 * env;
 
   // Cone delimitado: preto fora (AA mínimo só para não serrilhar a borda).
-  float inBand = smoothstep(-0.004, 0.004, t) * smoothstep(1.004, 0.996, t);
+  float inBand = smoothstep(-0.004, 0.004, tC) * smoothstep(1.004, 0.996, tC);
 
-  // 6 FAIXAS CHAPADAS: cor sólida, SEM gradiente e SEM linhas separadoras.
-  float idx = floor(clamp(t, 0.0, 0.999) * 6.0);
-  vec3 col = palette6(idx) * inBand;
+  // 9 FAIXAS CHAPADAS: cor sólida, SEM gradiente e SEM linhas separadoras.
+  float idx = floor(clamp(tC, 0.0, 0.999) * 9.0);
+  vec3 col = palette(idx) * inBand;
 
   gl_FragColor = vec4(col, 1.0);
 }`;

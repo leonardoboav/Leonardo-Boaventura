@@ -62,7 +62,7 @@ export function Testimonials() {
 
       <div className="relative z-10 mx-auto mb-16 flex max-w-6xl flex-col items-end px-6 text-right">
         <Reveal>
-          <p className="mb-6 font-mono text-xs uppercase text-acid">
+          <p className="mb-6 font-mono text-xs uppercase text-tangerine">
             (05) — prova social
           </p>
           <h2 className="max-w-2xl font-display text-4xl leading-[1.02] font-bold tracking-tight text-paper sm:text-6xl">

@@ -32,11 +32,7 @@ export function TextGenerate({
         return (
           <motion.span
             key={`${word}-${i}`}
-            className={
-              highlighted
-                ? "font-serif font-normal italic text-electric"
-                : undefined
-            }
+            className={highlighted ? "text-tangerine" : undefined}
             variants={{
               hidden: {
                 opacity: 0,

@@ -1,5 +1,5 @@
 import { Reveal } from "@/components/ui/reveal";
-import { SideAccent } from "@/components/ui/side-accent";
+import { TextHoverEffect } from "@/components/ui/text-hover-effect";
 import { whatsappHref } from "@/lib/site";
 
 type Service = {
@@ -35,22 +35,25 @@ export function Services() {
   return (
     <section
       id="servicos"
-      className="relative overflow-hidden bg-graphite pt-24 pb-16 sm:pt-32 sm:pb-24"
+      className="relative overflow-hidden bg-graphite pt-14 pb-10 sm:pt-20 sm:pb-14"
     >
-      {/* Acento: índice display gigante vazado — 4 serviços */}
-      <SideAccent side="right" distance={150} className="-top-4 right-0 sm:top-0 sm:right-4 lg:right-10">
-        <span className="text-outline-acid font-display text-[7rem] leading-none font-bold select-none sm:text-[12rem] lg:text-[17rem]">
-          04
-        </span>
-      </SideAccent>
-
       <div className="relative z-10 mx-auto max-w-6xl px-6">
-        <Reveal className="mb-12 max-w-2xl">
-          <p className="mb-6 font-mono text-xs uppercase text-acid">
+        {/* Momento de escala tipográfica: "BUILD" gigante em outline com
+            preenchimento de gradiente no hover. Decorativo (aria-hidden).
+            Altura limitada para a seção caber na tela. */}
+        <div aria-hidden className="mb-6 select-none sm:mb-8">
+          <TextHoverEffect
+            text="BUILD"
+            className="mx-auto block h-[clamp(3rem,14vh,7.5rem)] w-auto max-w-full"
+          />
+        </div>
+
+        <Reveal className="mb-8 max-w-2xl">
+          <p className="mb-4 font-mono text-xs uppercase text-ember">
             (02) — serviços
           </p>
           <h2 className="font-display text-4xl leading-[1.02] font-bold tracking-tight text-paper sm:text-6xl">
-            O que eu construo para o seu negócio
+            Construo isso para o seu negócio
           </h2>
         </Reveal>
 
@@ -63,9 +66,9 @@ export function Services() {
                 )}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="group grid grid-cols-[auto_1fr_auto] items-baseline gap-x-5 border-b border-line-d py-8 transition-colors duration-300 ease-out hover:bg-paper/[0.04] sm:gap-x-10 sm:py-10"
+                className="group grid grid-cols-[auto_1fr_auto] items-baseline gap-x-5 border-b border-line-d py-4 transition-colors duration-300 ease-out hover:bg-paper/[0.04] sm:gap-x-10 sm:py-5"
               >
-                <span className="font-mono text-sm text-acid">{service.index}</span>
+                <span className="font-mono text-sm text-ember">{service.index}</span>
                 <div>
                   <h3 className="font-display text-xl leading-tight font-bold text-paper sm:text-3xl">
                     {service.title}
@@ -76,7 +79,7 @@ export function Services() {
                 </div>
                 <span
                   aria-hidden
-                  className="self-center font-display text-2xl text-mist transition-[transform,color] duration-300 ease-out group-hover:translate-x-1.5 group-hover:text-acid"
+                  className="self-center font-display text-2xl text-mist transition-[transform,color] duration-300 ease-out group-hover:translate-x-1.5 group-hover:text-ember"
                 >
                   →
                 </span>

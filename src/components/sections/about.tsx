@@ -32,7 +32,7 @@ export function About() {
               className="aspect-[3/4] w-full border border-line-l"
             />
             <p className="mt-4 flex items-center gap-2.5 font-mono text-xs uppercase text-stone">
-              <span aria-hidden className="h-2 w-2 bg-punch" />
+              <span aria-hidden className="h-2 w-2 bg-amber" />
               leonardo boaventura — desenvolvedor
             </p>
           </Reveal>
@@ -40,7 +40,7 @@ export function About() {
           {/* Texto alinhado à direita — contraponto ao hero */}
           <div className="flex flex-col items-end text-right">
             <Reveal>
-              <p className="mb-6 font-mono text-xs uppercase text-punch-deep">
+              <p className="mb-6 font-mono text-xs uppercase text-amber-deep">
                 (01) — sobre
               </p>
               <h2 className="max-w-3xl font-display text-4xl leading-[1.02] font-bold tracking-tight sm:text-6xl">
@@ -52,11 +52,11 @@ export function About() {
 
             <Reveal delay={0.15} className="mt-10 max-w-xl">
               <p className="text-lg leading-relaxed text-stone">
-                Sou desenvolvedor focado em criar soluções que resolvem problemas
-                reais de negócio. Antes de escrever qualquer linha de código, entendo
-                o que precisa acontecer no seu faturamento, na sua operação ou na sua
-                rotina — e então construo o software certo para isso, com qualidade de
-                produto e sem complexidade desnecessária.
+                Desenvolvedor focado em criar soluções que resolvem problemas
+                reais de negócio. Entendendo
+                o que precisa acontecer no seu faturamento, operação ou na
+                rotina. Esclarecendo esses pontos, construirei o software certo. Com qualidade no
+                produto, sem complexidade desnecessária.
               </p>
             </Reveal>
           </div>
@@ -66,7 +66,7 @@ export function About() {
           <dl className="mt-16 grid gap-8 border-t border-line-l pt-10 sm:grid-cols-3">
             {STATS.map((stat) => (
               <div key={stat.index}>
-                <p className="font-mono text-xs text-punch-deep">{stat.index}</p>
+                <p className="font-mono text-xs text-amber-deep">{stat.index}</p>
                 <dt className="mt-2 font-display text-xl font-bold text-noir">
                   {stat.value}
                 </dt>

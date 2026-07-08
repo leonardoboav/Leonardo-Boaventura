@@ -5,8 +5,8 @@ import { RainbowBeams } from "@/components/ui/rainbow-beams";
 import { TextGenerate } from "@/components/ui/text-generate";
 import { whatsappHref } from "@/lib/site";
 
-const HEADLINE = "Sistemas e sites sob medida para o seu negócio crescer.";
-const HIGHLIGHT = ["sob", "medida"] as const;
+const HEADLINE = "Construa seu próximo projeto em minutos, não dias.";
+const HIGHLIGHT = ["minutos,"] as const;
 
 export function Hero() {
   return (
@@ -23,16 +23,16 @@ export function Hero() {
       {/* Nav */}
       <nav className="relative z-10 mx-auto flex w-full max-w-6xl items-center justify-between px-6 py-6">
         <a href="#" className="font-display text-lg font-bold text-paper">
-          lb<span className="text-electric">.</span>
+          lb<span className="text-tangerine">.</span>
         </a>
         <div className="hidden items-center gap-8 font-mono text-xs uppercase text-mist sm:flex">
-          <a href="#servicos" className="transition-colors hover:text-electric">
+          <a href="#servicos" className="transition-colors hover:text-tangerine">
             serviços
           </a>
-          <a href="#processo" className="transition-colors hover:text-electric">
+          <a href="#processo" className="transition-colors hover:text-tangerine">
             processo
           </a>
-          <a href="#contato" className="transition-colors hover:text-electric">
+          <a href="#contato" className="transition-colors hover:text-tangerine">
             contato
           </a>
         </div>
@@ -40,7 +40,7 @@ export function Hero() {
           href={whatsappHref()}
           target="_blank"
           rel="noopener noreferrer"
-          className="border border-line-d px-4 py-2 font-mono text-xs uppercase text-paper transition-colors hover:border-electric hover:text-electric focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-electric"
+          className="border border-line-d px-4 py-2 font-mono text-xs uppercase text-paper transition-colors hover:border-tangerine hover:text-tangerine focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-tangerine"
         >
           iniciar projeto →
         </a>
@@ -55,8 +55,8 @@ export function Hero() {
           className="mb-8 flex items-center gap-3 font-mono text-xs uppercase text-mist"
         >
           <span className="relative flex h-2 w-2">
-            <span className="animate-pulse-ring absolute inline-flex h-full w-full rounded-full bg-electric" />
-            <span className="relative inline-flex h-2 w-2 rounded-full bg-electric" />
+            <span className="animate-pulse-ring absolute inline-flex h-full w-full rounded-full bg-tangerine" />
+            <span className="relative inline-flex h-2 w-2 rounded-full bg-tangerine" />
           </span>
           [ disponível para novos projetos ]
         </motion.p>
@@ -72,7 +72,7 @@ export function Hero() {
           className="mt-8 max-w-xl text-lg leading-relaxed text-mist"
         >
           Sou <strong className="font-medium text-paper">Leonardo Boaventura</strong>.
-          Desenvolvo software que resolve problemas reais — do site que converte ao
+          Desenvolvo software que resolve problemas reais. Do site que converte ao
           sistema que sustenta a operação.
         </motion.p>
 
@@ -86,7 +86,7 @@ export function Hero() {
             href={whatsappHref()}
             target="_blank"
             rel="noopener noreferrer"
-            className="group inline-flex items-center justify-center gap-2 bg-electric px-8 py-4 font-semibold text-noir transition-transform duration-200 hover:-translate-y-0.5 active:translate-y-0 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-electric"
+            className="group inline-flex items-center justify-center gap-2 bg-tangerine px-8 py-4 font-semibold text-noir transition-transform duration-200 hover:-translate-y-0.5 active:translate-y-0 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-tangerine"
           >
             Iniciar projeto
             <span className="transition-transform duration-200 group-hover:translate-x-1">
@@ -95,7 +95,7 @@ export function Hero() {
           </a>
           <a
             href="#servicos"
-            className="inline-flex items-center justify-center border border-line-d px-8 py-4 font-semibold text-paper transition-colors duration-200 hover:border-paper focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-electric"
+            className="inline-flex items-center justify-center border border-line-d px-8 py-4 font-semibold text-paper transition-colors duration-200 hover:border-paper focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-tangerine"
           >
             Ver serviços
           </a>
@@ -117,7 +117,7 @@ export function Hero() {
           <div className="flex items-center gap-3 font-mono text-[0.65rem] uppercase text-mist sm:text-xs">
             scroll
             <span className="block h-8 w-px overflow-hidden bg-line-d">
-              <span className="animate-line-drop block h-full w-full bg-electric" />
+              <span className="animate-line-drop block h-full w-full bg-tangerine" />
             </span>
           </div>
         </div>

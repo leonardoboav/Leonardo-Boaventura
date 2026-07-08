@@ -13,7 +13,7 @@ export function Footer() {
       <div className="mx-auto flex max-w-6xl flex-col gap-8 px-6 py-14 sm:flex-row sm:items-center sm:justify-between">
         <div>
           <p className="font-display text-lg font-bold text-paper">
-            Leonardo Boaventura<span className="text-electric">.</span>
+            Leonardo Boaventura<span className="text-gold">.</span>
           </p>
           <p className="mt-1 text-sm text-mist">
             Sites e sistemas sob medida · {new Date().getFullYear()}
@@ -25,7 +25,7 @@ export function Footer() {
             <a
               key={link.href}
               href={link.href}
-              className="transition-colors hover:text-electric"
+              className="transition-colors hover:text-gold"
             >
               {link.label}
             </a>
@@ -35,7 +35,7 @@ export function Footer() {
         <div className="flex flex-col gap-1 text-sm text-mist sm:text-right">
           <a
             href={`mailto:${SITE.email}`}
-            className="transition-colors hover:text-electric"
+            className="transition-colors hover:text-gold"
           >
             {SITE.email}
           </a>
@@ -43,7 +43,7 @@ export function Footer() {
             href={whatsappHref()}
             target="_blank"
             rel="noopener noreferrer"
-            className="transition-colors hover:text-electric"
+            className="transition-colors hover:text-gold"
           >
             WhatsApp
           </a>

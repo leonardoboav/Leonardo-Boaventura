@@ -60,7 +60,7 @@ export function Contact() {
   }
 
   const inputClasses =
-    "w-full border-0 border-b border-line-d bg-transparent px-0 py-3 text-paper placeholder:text-mist/50 outline-none transition-colors duration-200 focus:border-electric";
+    "w-full border-0 border-b border-line-d bg-transparent px-0 py-3 text-paper placeholder:text-mist/50 outline-none transition-colors duration-200 focus:border-ember";
   const labelClasses = "mb-1 block font-mono text-xs uppercase text-mist";
 
   return (
@@ -81,7 +81,7 @@ export function Contact() {
 
       <div className="relative z-10 mx-auto grid max-w-6xl gap-16 px-6 lg:grid-cols-[1.1fr_1fr] lg:gap-24">
         <Reveal>
-          <p className="mb-6 font-mono text-xs uppercase text-electric">
+          <p className="mb-6 font-mono text-xs uppercase text-ember">
             (06) — contato
           </p>
           <h2 className="font-display text-4xl leading-[1.02] font-bold tracking-tight text-paper sm:text-6xl">
@@ -95,7 +95,7 @@ export function Contact() {
             href={whatsappHref()}
             target="_blank"
             rel="noopener noreferrer"
-            className="mt-10 inline-flex items-center gap-3 border border-electric px-7 py-4 font-semibold text-electric transition-colors duration-200 hover:bg-electric hover:text-noir focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-electric"
+            className="mt-10 inline-flex items-center gap-3 border border-ember px-7 py-4 font-semibold text-ember transition-colors duration-200 hover:bg-ember hover:text-noir focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-ember"
           >
             <WhatsAppIcon className="h-5 w-5" />
             Falar no WhatsApp
@@ -150,19 +150,19 @@ export function Contact() {
               <button
                 type="submit"
                 disabled={status === "sending"}
-                className="bg-electric px-7 py-4 font-semibold text-noir transition-transform duration-200 hover:-translate-y-0.5 active:translate-y-0 disabled:cursor-not-allowed disabled:opacity-60 disabled:hover:translate-y-0 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-electric"
+                className="bg-ember px-7 py-4 font-semibold text-noir transition-transform duration-200 hover:-translate-y-0.5 active:translate-y-0 disabled:cursor-not-allowed disabled:opacity-60 disabled:hover:translate-y-0 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-ember"
               >
                 {status === "sending" ? "Enviando…" : "Enviar mensagem"}
               </button>
 
               <div aria-live="polite" className="min-h-5 text-sm">
                 {status === "success" && (
-                  <p className="text-electric">
+                  <p className="text-ember">
                     Mensagem enviada! Retorno em até 1 dia útil.
                   </p>
                 )}
                 {status === "error" && errorMessage && (
-                  <p className="text-punch">{errorMessage}</p>
+                  <p className="text-ember">{errorMessage}</p>
                 )}
               </div>
             </div>
