@@ -16,7 +16,7 @@ export function Niches() {
     <section className="overflow-hidden bg-noir py-24 sm:py-32">
       <Reveal className="mx-auto mb-14 max-w-6xl px-6">
         <p className="font-mono text-xs uppercase text-gold">
-          (03) — manifesto
+          (03) manifesto
         </p>
       </Reveal>
 

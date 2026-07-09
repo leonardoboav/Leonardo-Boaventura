@@ -33,7 +33,7 @@ export function About() {
             />
             <p className="mt-4 flex items-center gap-2.5 font-mono text-xs uppercase text-stone">
               <span aria-hidden className="h-2 w-2 bg-amber" />
-              leonardo boaventura — desenvolvedor
+              leonardo boaventura · desenvolvedor
             </p>
           </Reveal>
 
@@ -41,7 +41,7 @@ export function About() {
           <div className="flex flex-col items-end text-right">
             <Reveal>
               <p className="mb-6 font-mono text-xs uppercase text-amber-deep">
-                (01) — sobre
+                (01) sobre
               </p>
               <h2 className="max-w-3xl font-display text-4xl leading-[1.02] font-bold tracking-tight sm:text-6xl">
                 Tecnologia é meio.

@@ -5,7 +5,7 @@ import { RainbowBeams } from "@/components/ui/rainbow-beams";
 import { TextGenerate } from "@/components/ui/text-generate";
 import { whatsappHref } from "@/lib/site";
 
-const HEADLINE = "Construa seu próximo projeto em minutos, não dias.";
+const HEADLINE = "Construa seu projeto em minutos, não dias.";
 const HIGHLIGHT = ["minutos,"] as const;
 
 export function Hero() {
@@ -111,8 +111,8 @@ export function Hero() {
       >
         <div className="flex items-end justify-between border-t border-line-d pt-6">
           <div className="flex flex-col gap-1 font-mono text-[0.65rem] uppercase text-mist sm:flex-row sm:gap-10 sm:text-xs">
-            <span>base — brasil / remoto</span>
-            <span>stack — typescript · react · node</span>
+            <span>base: brasil / remoto</span>
+            <span>stack: typescript · react · node</span>
           </div>
           <div className="flex items-center gap-3 font-mono text-[0.65rem] uppercase text-mist sm:text-xs">
             scroll

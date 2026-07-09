@@ -82,14 +82,14 @@ export function Contact() {
       <div className="relative z-10 mx-auto grid max-w-6xl gap-16 px-6 lg:grid-cols-[1.1fr_1fr] lg:gap-24">
         <Reveal>
           <p className="mb-6 font-mono text-xs uppercase text-ember">
-            (06) — contato
+            (06) contato
           </p>
           <h2 className="font-display text-4xl leading-[1.02] font-bold tracking-tight text-paper sm:text-6xl">
             Pronto para tirar o projeto do papel?
           </h2>
           <p className="mt-6 max-w-md text-lg leading-relaxed text-mist">
-            Me conte o que você precisa. Respondo com uma avaliação honesta do que
-            faz sentido construir — e do que não faz.
+            Me conte o que você precisa. Respondo com uma avaliação honesta do
+            que faz sentido construir e do que não faz.
           </p>
           <a
             href={whatsappHref()}

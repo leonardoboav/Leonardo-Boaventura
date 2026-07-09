@@ -20,7 +20,7 @@ const jetbrains = JetBrains_Mono({
 export const metadata: Metadata = {
   metadataBase: new URL(SITE.domain),
   title: {
-    default: "Leonardo Boaventura — Sites e sistemas sob medida",
+    default: "Leonardo Boaventura | Sites e sistemas sob medida",
     template: "%s | Leonardo Boaventura",
   },
   description:
@@ -38,14 +38,14 @@ export const metadata: Metadata = {
     type: "website",
     url: SITE.domain,
     siteName: "Leonardo Boaventura",
-    title: "Leonardo Boaventura — Sites e sistemas sob medida",
+    title: "Leonardo Boaventura | Sites e sistemas sob medida",
     description:
       "Software sob medida para o seu negócio crescer: sites de alta conversão, sistemas web, automações e consultoria técnica.",
     locale: "pt_BR",
   },
   twitter: {
     card: "summary_large_image",
-    title: "Leonardo Boaventura — Sites e sistemas sob medida",
+    title: "Leonardo Boaventura | Sites e sistemas sob medida",
     description:
       "Software sob medida para o seu negócio crescer: sites de alta conversão, sistemas web, automações e consultoria técnica.",
   },
