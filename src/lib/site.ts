@@ -6,8 +6,8 @@ export const SITE = {
   name: "Leonardo Boaventura",
   domain: "https://leonardoboaventura.com",
   email: "contato@leonardoboaventura.com",
-  // Substitua pelo número real no formato internacional (55 + DDD + número)
-  whatsapp: "https://wa.me/55XXXXXXXXXXX",
+  // Número no formato internacional (55 + DDD + número)
+  whatsapp: "https://wa.me/5561999972737",
   whatsappMessage:
     "Olá, Leonardo! Vi seu site e quero conversar sobre um projeto.",
 } as const;
