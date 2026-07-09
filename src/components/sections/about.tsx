@@ -1,4 +1,5 @@
 import { DitherShader } from "@/components/ui/dither-shader";
+import { DottedGlowBackground } from "@/components/ui/dotted-glow-background";
 import { Reveal } from "@/components/ui/reveal";
 import { IMG_SOBRE } from "@/lib/site";
 
@@ -14,6 +15,24 @@ export function About() {
       id="sobre"
       className="relative overflow-hidden bg-paper pt-24 pb-20 text-noir sm:pt-32 sm:pb-24"
     >
+      {/* Textura de fundo: malha de pontos com glow, concentrada no canto
+          inferior-esquerdo e desaparecendo (mask radial) antes do texto. */}
+      <div
+        aria-hidden
+        className="pointer-events-none absolute bottom-0 left-0 z-0 h-[72%] w-[58%] [mask-image:radial-gradient(75%_75%_at_22%_80%,#000_0%,transparent_72%)] [-webkit-mask-image:radial-gradient(75%_75%_at_22%_80%,#000_0%,transparent_72%)]"
+      >
+        <DottedGlowBackground
+          color="#52555c"
+          glowColor="#f59e0b"
+          gap={12}
+          radius={1.6}
+          opacity={0.55}
+          speedMin={0.3}
+          speedMax={1.2}
+          className="h-full w-full"
+        />
+      </div>
+
       <div className="relative z-10 mx-auto max-w-6xl px-6">
         <div className="grid gap-12 lg:grid-cols-[0.8fr_1.2fr] lg:gap-20">
           {/* Retrato em dithering — o elemento humano e o acento da seção */}
