@@ -1,6 +1,7 @@
 "use client";
 
 import { motion } from "framer-motion";
+import { EncryptedText } from "@/components/ui/encrypted-text";
 import { RainbowBeams } from "@/components/ui/rainbow-beams";
 import { TextGenerate } from "@/components/ui/text-generate";
 import { whatsappHref } from "@/lib/site";
@@ -58,7 +59,12 @@ export function Hero() {
             <span className="animate-pulse-ring absolute inline-flex h-full w-full rounded-full bg-tangerine" />
             <span className="relative inline-flex h-2 w-2 rounded-full bg-tangerine" />
           </span>
-          [ disponível para novos projetos ]
+          <EncryptedText
+            text="[ disponível para novos projetos ]"
+            revealedClassName="text-mist"
+            encryptedClassName="text-tangerine/70"
+            revealDelayMs={45}
+          />
         </motion.p>
 
         <h1 className="max-w-5xl font-display text-[2.75rem] leading-[0.98] font-bold tracking-tight text-paper sm:text-7xl lg:text-[5.5rem]">

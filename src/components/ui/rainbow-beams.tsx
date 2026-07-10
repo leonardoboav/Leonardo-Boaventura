@@ -23,6 +23,8 @@ precision highp float;
 varying vec2 vUv;
 uniform float uTime;
 uniform vec2 uRes;
+uniform vec2 uMouse;  // posição do cursor em vUv (0..1, y para cima)
+uniform float uHover; // 0..1, intensidade suavizada do hover
 
 // 9 cores CHAPADAS da fita, SÓ tons quentes (vermelho -> amarelo claro), como
 // estrias distintas. Sem ciano, violeta, roxo, magenta ou rosa.
@@ -76,12 +78,29 @@ void main() {
                 + sin(dist * 8.0 - uTime * 0.28 + phase * 1.5) * 0.4;
   tC += flutter * 0.028 * env;
 
+  // HOVER: o cursor "afasta" as faixas ao redor dele — como um dedo passando
+  // na fita — SOMADO à ondulação de bandeira, que segue intacta. A influência
+  // é local (gaussiana na distância ao cursor) e a direção do empurrão é o
+  // lado da faixa em relação ao cursor no eixo das cores (tM).
+  vec2 m = vec2(uMouse.x * aspect, uMouse.y);
+  float md = distance(p, m);
+  float inf = exp(-md * md * 14.0) * uHover;
+  vec2 dm = m - origin;
+  float tM = ((aCenter + aHalf) - atan(dm.y, dm.x)) / (2.0 * aHalf);
+  float side = tC - tM;
+  tC += inf * 0.16 * (side / (abs(side) + 0.12)); // sigmoide barata: abre sem rasgar
+  // Perto do cursor as faixas também tremulam um pouco mais.
+  tC += flutter * 0.05 * inf;
+
   // Cone delimitado: preto fora (AA mínimo só para não serrilhar a borda).
   float inBand = smoothstep(-0.004, 0.004, tC) * smoothstep(1.004, 0.996, tC);
 
   // 9 FAIXAS CHAPADAS: cor sólida, SEM gradiente e SEM linhas separadoras.
   float idx = floor(clamp(tC, 0.0, 0.999) * 9.0);
   vec3 col = palette(idx) * inBand;
+
+  // Brilho local sutil sob o cursor (só dentro das faixas).
+  col *= 1.0 + 0.22 * inf;
 
   gl_FragColor = vec4(col, 1.0);
 }`;
@@ -163,6 +182,8 @@ export function RainbowBeams({ className }: RainbowBeamsProps) {
 
     const uTime = gl.getUniformLocation(program, "uTime");
     const uRes = gl.getUniformLocation(program, "uRes");
+    const uMouse = gl.getUniformLocation(program, "uMouse");
+    const uHover = gl.getUniformLocation(program, "uHover");
 
     // Faixas nítidas pedem resolução real (meia escala borrava as linhas);
     // limita o DPR para não pesar em telas retina.
@@ -173,7 +194,29 @@ export function RainbowBeams({ className }: RainbowBeamsProps) {
     ).matches;
     const start = performance.now();
 
+    // Cursor rastreado na janela (o conteúdo do hero fica por cima do canvas,
+    // então eventos direto nele não bastam) e suavizado a cada frame — o
+    // efeito entra/sai em fade e a posição persegue o mouse sem salto.
+    const mouse = { x: 0.5, y: 0.5, hover: 0 };
+    const target = { x: 0.5, y: 0.5, hover: 0 };
+    const onPointerMove = (event: PointerEvent) => {
+      const rect = container.getBoundingClientRect();
+      const x = (event.clientX - rect.left) / rect.width;
+      const y = 1 - (event.clientY - rect.top) / rect.height;
+      target.x = x;
+      target.y = y;
+      target.hover = x >= 0 && x <= 1 && y >= 0 && y <= 1 ? 1 : 0;
+    };
+    const onPointerLeave = () => {
+      target.hover = 0;
+    };
+
     const draw = () => {
+      mouse.x += (target.x - mouse.x) * 0.1;
+      mouse.y += (target.y - mouse.y) * 0.1;
+      mouse.hover += (target.hover - mouse.hover) * 0.06;
+      gl.uniform2f(uMouse, mouse.x, mouse.y);
+      gl.uniform1f(uHover, mouse.hover);
       gl.uniform1f(uTime, (performance.now() - start) / 1000);
       gl.drawArrays(gl.TRIANGLE_STRIP, 0, 4);
     };
@@ -211,11 +254,23 @@ export function RainbowBeams({ className }: RainbowBeamsProps) {
     });
     pauseObserver.observe(container);
     if (reduceMotion) draw();
+    else {
+      window.addEventListener("pointermove", onPointerMove, { passive: true });
+      document.documentElement.addEventListener(
+        "pointerleave",
+        onPointerLeave,
+      );
+    }
 
     return () => {
       cancelAnimationFrame(raf);
       resizeObserver.disconnect();
       pauseObserver.disconnect();
+      window.removeEventListener("pointermove", onPointerMove);
+      document.documentElement.removeEventListener(
+        "pointerleave",
+        onPointerLeave,
+      );
       gl.getExtension("WEBGL_lose_context")?.loseContext();
     };
   }, [visible]);

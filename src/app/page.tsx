@@ -4,6 +4,7 @@ import { Services } from "@/components/sections/services";
 import { Niches } from "@/components/sections/niches";
 import { Process } from "@/components/sections/process";
 import { Testimonials } from "@/components/sections/testimonials";
+import { ProjectsSection } from "@/components/projects-section";
 import { Contact } from "@/components/sections/contact";
 import { Footer } from "@/components/sections/footer";
 import { WhatsAppButton } from "@/components/whatsapp-button";
@@ -15,6 +16,7 @@ export default function Home() {
       <ScrollProgress />
       <Hero />
       <About />
+      <ProjectsSection />
       <Services />
       <Niches />
       <Process />

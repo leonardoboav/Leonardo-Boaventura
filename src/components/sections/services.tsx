@@ -205,7 +205,7 @@ export function Services() {
         <div className="mb-12 grid gap-8 sm:mb-16 lg:grid-cols-[1fr_auto] lg:items-end">
           <Reveal>
             <p className="mb-4 font-mono text-xs uppercase text-ember">
-              (02) serviços
+              (03) serviços
             </p>
             <h2 className="max-w-2xl font-display text-4xl leading-[1.02] font-bold tracking-tight text-paper sm:text-6xl">
               Construo isso para o seu negócio

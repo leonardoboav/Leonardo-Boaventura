@@ -73,7 +73,7 @@ export function Process() {
         <div className="flex flex-col items-end text-right">
           <Reveal className="mb-20">
             <p className="mb-6 font-mono text-xs uppercase text-ember-deep">
-              (04) processo
+              (05) processo
             </p>
             <h2 className="max-w-3xl font-display text-4xl leading-[1.02] font-bold tracking-tight sm:text-6xl">
               Do primeiro contato ao projeto no ar

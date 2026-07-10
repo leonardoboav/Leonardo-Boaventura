@@ -218,7 +218,11 @@ type CycleProps = {
   className?: string;
 };
 
-/** Alterna automaticamente entre `messages` num painel de tamanho fixo. */
+/**
+ * Alterna automaticamente entre `messages` num painel de tamanho fixo.
+ * Clicar em qualquer célula avança para a próxima frase na hora; o ciclo
+ * automático recomeça a contagem a cada troca (manual ou não).
+ */
 export function TextFlippingBoardCycle({
   messages,
   interval = 6000,
@@ -235,14 +239,24 @@ export function TextFlippingBoardCycle({
       interval,
     );
     return () => window.clearInterval(id);
-  }, [messages.length, interval]);
+    // `idx` nas deps: qualquer troca (clique ou automática) zera o timer,
+    // para a próxima frase não chegar "atrasada" logo depois de um clique.
+  }, [messages.length, interval, idx]);
 
   return (
-    <TextFlippingBoard
-      text={messages[idx] ?? ""}
-      rows={rows}
-      cols={cols}
-      className={className}
-    />
+    <button
+      type="button"
+      onClick={() => setIdx((i) => (i + 1) % messages.length)}
+      aria-label="Trocar a frase do painel"
+      title="Clique para trocar a frase"
+      className="cursor-pointer appearance-none rounded-xl border-0 bg-transparent p-0 focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-gold"
+    >
+      <TextFlippingBoard
+        text={messages[idx] ?? ""}
+        rows={rows}
+        cols={cols}
+        className={className}
+      />
+    </button>
   );
 }
