@@ -78,7 +78,7 @@ export function Hero() {
           className="mt-8 max-w-xl text-lg leading-relaxed text-mist"
         >
           Sou <strong className="font-medium text-paper">Leonardo Boaventura</strong>.
-          Desenvolvo software que resolve problemas reais. Do site que converte ao
+          Desenvolvo softwares que resolvem problemas reais. Do site que converte ao
           sistema que sustenta a operação.
         </motion.p>
 
